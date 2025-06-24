@@ -30,8 +30,26 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
         // If this one of the hosts we are allowed to navigate to, we'll open a
         // new scene, pass the WKWebView created here, and show it over there..
         if let host = url.host, bridge.config.shouldAllowNavigation(to: host) {
-            print("THIS IS A RIGHT TAB GOING TO \(url.absoluteString)")
-            return nil
+            print("Opening \(url.absoluteString) in a new scene")
+
+            // Register our new tab request under this UUID
+            let webViewId = UUID()
+            WebViewRegistry.shared.register(webView: webView, with: url, for: webViewId)
+
+            // Prepare the activity to dispatch
+            let userActivity = NSUserActivity(activityType: "com.usrz.coder.scene")
+            let options = UIScene.ActivationRequestOptions()
+
+            userActivity.userInfo = [ "webViewId": webViewId ]
+            options.requestingScene = UIApplication.shared.connectedScenes.first
+
+            // Request the activation of a new scene, hopefully it'll pick up the view and URL
+            UIApplication.shared.requestSceneSessionActivation(nil,
+                    userActivity: userActivity,
+                    options: options,
+                    errorHandler: { error in
+                        print("Failed to open new window: \(error.localizedDescription)")
+            })
 
         // If this is not one of the nosts we are allowed to navigate to, we'll
         // simply handle it off to the OS. We still return a WKWebView to the
