@@ -34,13 +34,13 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
             // Register our new tab request under this UUID
             let webViewId = UUID()
-            WebViewRegistry.shared.register(webView: webView, with: url, for: webViewId)
+            NavigationRegistry.shared.register(webView: webView, with: url, for: webViewId)
 
             // Prepare the activity to dispatch
-            let userActivity = NSUserActivity(activityType: "com.usrz.coder.scene")
+            let userActivity = NSUserActivity(activityType: "com.usrz.coder.navigate")
             let options = UIScene.ActivationRequestOptions()
 
-            userActivity.userInfo = [ "webViewId": webViewId ]
+            userActivity.userInfo = [ "navigationId": webViewId ]
             options.requestingScene = UIApplication.shared.connectedScenes.first
 
             // Request the activation of a new scene, hopefully it'll pick up the view and URL
