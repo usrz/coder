@@ -4,7 +4,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
     /* Capacitor was loaded, the webview is ready */
     override func capacitorDidLoad() {
-        print("🔰 Capacitor is loaded")
+        print("🔰 Capacitor did load")
         // Setup ourselves as the UI delegate for the web view so that
         // we can trap when "window.open()" and "window.close()" are
         // called in JavaScript land...
@@ -69,6 +69,53 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
     func webViewDidClose(_ webView: WKWebView) {
         print("🔰 WKWebView did close")
         self.actuallyCloseWindow()
+    }
+
+    /* ===== HANDLING THE "NEW WINDOW" REQUEST FROM ABOVE ====================================== */
+
+    var navigationWebView: WKWebView? = nil
+    var navigationUrl: URL? = nil
+
+    /* Inject the WKWebView created (above) in a different scene */
+    override func webView(with frame: CGRect, configuration: WKWebViewConfiguration) -> WKWebView {
+        print("🔰 NavigationData INSIDE \(String(describing: navigationUrl)) \(String(describing: navigationWebView))")
+
+        guard let webView = navigationWebView else {
+            print("🔰 Creating new WKWebView")
+            return super.webView(with: frame, configuration: configuration)
+        }
+
+        print("🔰 Injecting WKWebView from a different scene")
+        navigationWebView = nil
+        webView.frame = frame
+        return webView
+    }
+
+    /* Perform navigation to our URL, if different from the start one */
+    override open func viewDidLoad() {
+        print("🔰 View did load")
+
+        // This will trigger the immediate navigation to "bridge.config.appStartServerURL"
+        // and unfortunately, as "loadWebView()" is final, and there doesn't seem to be a
+        // way to dynamically change the "appStartServerURL" at runtime there is not much
+        // we can do... Trying to replace the WebViewDelegationHandler is also impossible
+        // in the current state of Capacitor so our only option is... HACK!
+        super.viewDidLoad()
+
+        // If we don't have a navigation URL, nothing to do..
+        guard let url = navigationUrl
+        else { return }
+        navigationUrl = nil
+
+        // Check if the "appStartServerURL" is different from our navigation one
+        if (url == bridge?.config.appStartServerURL) {
+            return
+        }
+
+        // Stop and immediately restart with our new URL
+        print("🔰 Performing initial navigation to \(url.absoluteString)")
+        webView?.stopLoading()
+        webView?.load(URLRequest(url: url))
     }
 
     /* ===== HANDLE KEY COMMANDS =============================================================== */
