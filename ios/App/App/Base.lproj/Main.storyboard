@@ -9,7 +9,7 @@
         <!--Coder View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CoderViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="CoderViewController" id="BYZ-38-t0r" customClass="CoderViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="-2"/>
