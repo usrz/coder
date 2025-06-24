@@ -6,6 +6,7 @@
   "scripts": {
     "cap": "cap",
     "ios": "cap run ios",
+    "sync": "cap sync",
     "xcode": "cap open ios"
   },
   "author": "Pier Fumagalli <pier@usrz.com>",
