@@ -19,14 +19,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
     /* Close the current scene (CMD-SHIFT-W) */
     @objc func handleCloseWindow() {
         print("Handling CMD-SHIFT-W")
-        guard let scene = self.view.window?.windowScene
-        else { return }
-
-        UIApplication.shared.requestSceneSessionDestruction(
-            scene.session,
-            options: nil,
-            errorHandler: nil
-        )
+        closeWindow()
     }
 
     /* Forward CMD-W (Close Editor) to JavaScript */
@@ -89,5 +82,46 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
             }
         })
     }
-}
 
+    /* ===== WINDOW CLOSING CONFIRMATION ======================================================= */
+
+    /* Ask before closing a window: on iPad it's a quite intensive operation */
+    func closeWindow() {
+        presentConfirmDialog(
+            title: "Close Window",
+            message: "Are you sure you want to close this window?",
+            okTitle: "Close",
+        ) {
+            guard let scene = self.view.window?.windowScene
+            else { return }
+
+            UIApplication.shared.requestSceneSessionDestruction(
+                scene.session,
+                options: nil,
+                errorHandler: nil
+            )
+        }
+    }
+
+    /* Confirm dialog, we might reuse it someday */
+    func presentConfirmDialog(
+        title: String,
+        message: String,
+        okTitle: String = "OK",
+        cancelTitle: String = "Cancel",
+        onConfirm: @escaping () -> Void,
+    ) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Close", style: .destructive, handler: { _ in
+            onConfirm()
+        }))
+
+        self.present(alert, animated: true)
+    }
+}
