@@ -4,7 +4,9 @@
   "private": true,
   "description": "Showcase of Capacitor and Coder",
   "scripts": {
-    "cap": "cap"
+    "cap": "cap",
+    "ios": "cap run ios",
+    "xcode": "cap open ios"
   },
   "author": "Pier Fumagalli <pier@usrz.com>",
   "license": "MIT",
