@@ -16,6 +16,7 @@
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		96060B4C2E0B16C200814761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96060B4B2E0B16C200814761 /* SceneDelegate.swift */; };
 		96060B4E2E0B185E00814761 /* CoderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96060B4D2E0B185800814761 /* CoderViewController.swift */; };
+		96060B502E0B285900814761 /* WebViewRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96060B4F2E0B285900814761 /* WebViewRegistry.swift */; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		96060B4B2E0B16C200814761 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		96060B4D2E0B185800814761 /* CoderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoderViewController.swift; sourceTree = "<group>"; };
+		96060B4F2E0B285900814761 /* WebViewRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewRegistry.swift; sourceTree = "<group>"; };
 		AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				96060B4F2E0B285900814761 /* WebViewRegistry.swift */,
 				96060B4D2E0B185800814761 /* CoderViewController.swift */,
 				96060B4B2E0B16C200814761 /* SceneDelegate.swift */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
@@ -217,6 +220,7 @@
 			files = (
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
 				96060B4C2E0B16C200814761 /* SceneDelegate.swift in Sources */,
+				96060B502E0B285900814761 /* WebViewRegistry.swift in Sources */,
 				96060B4E2E0B185E00814761 /* CoderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
