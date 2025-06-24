@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "lib": [ "esnext" ],
+    "types": [ "node" ],
+
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    "noEmit": true,
+  },
+  "include": [
+    "*.config.*",
+  ],
+}

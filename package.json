@@ -1,0 +1,19 @@
+{
+  "name": "@juit/coder-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Showcase of Capacitor and Coder",
+  "scripts": {
+    "cap": "cap"
+  },
+  "author": "Pier Fumagalli <pier@usrz.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^7.4.0",
+    "@capacitor/ios": "^7.4.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.0",
+    "typescript": "^5.8.3"
+  }
+}
