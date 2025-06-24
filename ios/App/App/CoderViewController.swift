@@ -4,7 +4,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
     /* Capacitor was loaded, the webview is ready */
     override func capacitorDidLoad() {
-        print("Capacitor is loaded")
+        print("🔰 Capacitor is loaded")
         // Setup ourselves as the UI delegate for the web view so that
         // we can trap when "window.open()" and "window.close()" are
         // called in JavaScript land...
@@ -20,7 +20,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
     ) -> WKWebView? {
         // Basic checks, we need to have our bridge and a URL to go to
         guard let bridge = bridge, let url = navigationAction.request.url else {
-            print("No Cpacitor bridge or URL to navigate to")
+            print("🔰 No Cpacitor bridge or URL to navigate to")
             return nil
         }
 
@@ -30,7 +30,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
         // If this one of the hosts we are allowed to navigate to, we'll open a
         // new scene, pass the WKWebView created here, and show it over there..
         if let host = url.host, bridge.config.shouldAllowNavigation(to: host) {
-            print("Opening \(url.absoluteString) in a new scene")
+            print("🔰 Opening \(url.absoluteString) in a new scene")
 
             // Register our new tab request under this UUID
             let webViewId = UUID()
@@ -48,7 +48,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
                     userActivity: userActivity,
                     options: options,
                     errorHandler: { error in
-                        print("Failed to open new window: \(error.localizedDescription)")
+                        print("🔰 Failed to open new window: \(error.localizedDescription)")
             })
 
         // If this is not one of the nosts we are allowed to navigate to, we'll
@@ -56,7 +56,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
         // caller (Coder will complain about popups otherwise), but immediately
         // close it from JavaScript without navigating (is this needed?)
         } else {
-            print("Opening \(url.absoluteString) in the system browser")
+            print("🔰 Opening \(url.absoluteString) in the system browser")
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             webView.evaluateJavaScript("window.close()", completionHandler: nil)
         }
@@ -67,10 +67,9 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
     /* Teardown our scene when the WKWebView was closed (normally "window.close()") */
     func webViewDidClose(_ webView: WKWebView) {
-        print("WKWebView did close")
+        print("🔰 WKWebView did close")
         self.actuallyCloseWindow()
     }
-
 
     /* ===== HANDLE KEY COMMANDS =============================================================== */
 
@@ -84,19 +83,19 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
     /* Close the current scene (CMD-SHIFT-W) */
     @objc func handleCloseWindow() {
-        print("Handling CMD-SHIFT-W")
+        print("🔰 Handling CMD-SHIFT-W")
         nicelyCloseWindow()
     }
 
     /* Forward CMD-W (Close Editor) to JavaScript */
     @objc func handleCloseTab() {
-        print("Handling CMD-W")
+        print("🔰 Handling CMD-W")
         injectKeyCombo(key: "w", code: "KeyW", metaKey: true)
     }
 
     /* Forward CMD-Period (Cancel) to JavaScript */
     @objc func handleCancel() {
-        print("Handling CMD-Period")
+        print("🔰 Handling CMD-Period")
         injectKeyCombo(key: ".", code: "Period", metaKey: true)
     }
 
@@ -144,7 +143,7 @@ class CoderViewController: CAPBridgeViewController, WKUIDelegate {
 
         webView.evaluateJavaScript(js, completionHandler: { result, error in
             if let error = error {
-                print("JS error: \(error)")
+                print("🔰 JS error: \(error)")
             }
         })
     }
