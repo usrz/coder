@@ -10,7 +10,7 @@
     "xcode": "cap open ios"
   },
   "author": "Pier Fumagalli <pier@usrz.com>",
-  "license": "MIT",
+  "license": "Unlicense",
   "dependencies": {
     "@capacitor/core": "^7.4.0",
     "@capacitor/ios": "^7.4.0"
