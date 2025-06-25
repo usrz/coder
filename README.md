@@ -22,6 +22,8 @@ one late night I thought:
 
 And that's exactly what this is.
 
+![My test setup](./assets/demo.jpg)
+
 ## 💡 What It Does
 
 - Wraps `code-server` in a native iPad app using Capacitor
