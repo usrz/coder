@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Coder Logo" src="./assets/coder.png" width="192">
+</p>
+
 # Coder: Because I Wasn't Allowed to Bring My Laptop
 
 This project was born out of desperation and determination. You see, my wife
